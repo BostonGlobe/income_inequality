@@ -16,13 +16,13 @@ with open('csv/raw_2009.csv', 'r') as csvfile:
         val = False
         if i == 0:
             val = 'gisjoin2_mod'
-        else:	
+        else:   
             gis = row[5]
-            val = gis[:3] + '0' + gis[3:6] + '0' + gis[6:]
-
+            val = gis[:3] + '0' + gis[3:5] + '0' + gis[5:]
+            print(val)
         addRow(row, val)        
 
 writer = csv.writer(open('csv/raw_2009_modified.csv', 'w'))
-	
+    
 for o in output:
    writer.writerow(o)

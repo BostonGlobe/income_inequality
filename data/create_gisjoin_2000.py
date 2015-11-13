@@ -18,8 +18,8 @@ with open('csv/raw_2000.csv', 'r') as csvfile:
             val = 'gisjoin2_mod'
         else:	
             gis = row[5]
-            val = gis[:3] + '0' + gis[3:6] + '0' + gis[6:]
-
+            val = gis[:3] + '0' + gis[3:5] + '0' + gis[5:]
+            print(val)
         addRow(row, val)        
 
 writer = csv.writer(open('csv/raw_2000_modified.csv', 'w'))

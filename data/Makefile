@@ -57,4 +57,17 @@
 	mv noMatches.json noMatches_2000.json
 
 2009:
-	echo 'tk'	
+	csvgrep -c year -m 2009 csv/raw.csv > csv/raw_2009.csv
+	
+	# python create_gisjoin_2009.py
+	
+	bind-data-to-geojson \
+	-d csv/raw_2009.csv \
+	--dc trnum \
+	-g shapefiles/US_tract_2010_ma.json \
+	--gc GEOID10 \
+	-a false \
+	-t csv \
+	-o joined_2009.json
+
+	mv noMatches.json noMatches_2009.json
