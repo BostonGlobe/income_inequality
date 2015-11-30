@@ -15,9 +15,11 @@
 1980:
 	csvgrep -c year -m 1980 csv/raw.csv > csv/raw_1980.csv
 	
+	python create_gisjoin_1980.py
+
 	bind-data-to-geojson \
-	-d csv/raw_1980.csv \
-	--dc gisjoin2 \
+	-d csv/raw_1980_modified.csv \
+	--dc gisjoin_mod \
 	-g shapefiles/US_tract_1980_ma.json \
 	--gc GISJOIN2 \
 	-a false \
@@ -28,10 +30,12 @@
 
 1990:
 	csvgrep -c year -m 1990 csv/raw.csv > csv/raw_1990.csv
+
+	python create_gisjoin_1990.py
 	
 	bind-data-to-geojson \
-	-d csv/raw_1990.csv \
-	--dc gisjoin2 \
+	-d csv/raw_1990_modified.csv \
+	--dc gisjoin_mod \
 	-g shapefiles/US_tract_1990_ma.json \
 	--gc GISJOIN2 \
 	-a false \
