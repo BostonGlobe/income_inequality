@@ -1,5 +1,10 @@
 # Income inequality
 
+
+## TODO
+* use trnum for at least 1980 and 1990
+
+
 ## Steps
 
 * open year shape file
