@@ -208,3 +208,45 @@
 	-o joined_2009_essex-county.json
 
 	mv noMatches.json noMatches_2009_essex-county.json
+
+2014:
+	csvgrep -c year -m 2010-14 csv/raw.csv > csv/raw_2014.csv
+	
+	csvgrep -c metname -m "Boston-Quincy, MA" csv/raw_2014.csv > csv/2014_boston-quincy.csv
+	csvgrep -c metname -m "Cambridge-Newton-Framingham, MA" csv/raw_2014.csv > csv/2014_cambridge-newton-framingham.csv
+	csvgrep -c metname -m "Essex County, MA" csv/raw_2014.csv > csv/2014_essex-county.csv
+
+	# python create_gisjoin_2014.py
+	
+	bind-data-to-geojson \
+	-d csv/2014_boston-quincy.csv \
+	--dc trnum \
+	-g shapefiles/US_tract_2010_ma.json \
+	--gc GEOID10 \
+	-a false \
+	-t csv \
+	-o joined_2014_boston-quincy.json
+
+	mv noMatches.json noMatches_2014_boston-quincy.json
+
+	bind-data-to-geojson \
+	-d csv/2014_cambridge-newton-framingham.csv \
+	--dc trnum \
+	-g shapefiles/US_tract_2010_ma.json \
+	--gc GEOID10 \
+	-a false \
+	-t csv \
+	-o joined_2014_cambridge-newton-framingham.json
+
+	# mv noMatches.json noMatches_2014_cambridge-newton-framingham.json
+
+	bind-data-to-geojson \
+	-d csv/2014_essex-county.csv \
+	--dc trnum \
+	-g shapefiles/US_tract_2010_ma.json \
+	--gc GEOID10 \
+	-a false \
+	-t csv \
+	-o joined_2014_essex-county.json
+
+	mv noMatches.json noMatches_2014_essex-county.json
