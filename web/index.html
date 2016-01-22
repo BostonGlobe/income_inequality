@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+/* CSS goes here. */
+.tract {
+	fill: #ccc;
+	stroke: rgba(50,50,50,0.2);
+}
+
+</style>
+<body>
+<div id='map'></div>
+<script src="//d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="//d3js.org/topojson.v1.min.js"></script>
+<script>
+
+
+var width = 960,
+    height = 540;
+
+var svg = d3.select('body').append('svg')
+    .attr('width', width)
+    .attr('height', height);
+
+var projection = d3.geo.albers()
+	.scale( 60000 )
+	.rotate( [71, 0] )
+	.center( [0, 42.65] )
+	.translate( [width/2,height/2] );
+
+var path = d3.geo.path()
+    .projection(projection);
+
+
+
+
+
+d3.json("small.json", function(error, data) {
+	if (error) return console.error(error);
+
+	var tracts = topojson.feature(data, data.objects.collection).features;
+	
+	var colors = ['#d88a70', '#f2be89', '#ffd895', '#cfd7c2', '#aab299', '#868f72'];
+
+	svg.append('g')
+		.attr('class', 'tracts')
+    .selectAll('path')
+		.data(tracts)
+    .enter().append('path')
+    	.attr('class', 'tract')
+		.style('fill', function(d) { 
+        	var index = +d.properties.medcat - 1;
+        	return colors[index];
+      	})
+      	.attr('d', path);
+});
+
+
+</script>
+</body>
+</html>
